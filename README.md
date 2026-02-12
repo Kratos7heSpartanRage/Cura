@@ -8,7 +8,7 @@
 
 **Cura (Code Curator) is an intelligent multi-agent system that automatically generates comprehensive, accurate README.md files for any software repository.**
 
-[Features](#-features) • [Architecture](#-architecture) • [Installation](#-installation) • [Usage](#-usage) • [README Planning](#-readme-planning) • [Visual Pipeline](#-visual-pipeline-example) • [Contributing](#-contributing) 
+[Features](#-features) • [Architecture](#-architecture) • [Installation](#-installation) • [Usage](#-usage) • [Contributing](#-contributing) 
 
 </div>
 
@@ -66,27 +66,7 @@ Every step of the pipeline is **fully transparent**:
 
 ## 🏗 Architecture
 
-Cura/
-├── agents/                  # The AI Workforce
-│   ├── critic_agent.py      # Final reviewer (quality gate)
-│   ├── directory_agent.py   # Analyzes file structure
-│   ├── intent_agent.py      # Infers project purpose
-│   ├── planner_agent.py     # Outlines README sections
-│   ├── summarizer_agent.py  # Summarizes individual files
-│   └── synthesizer_agent.py # Generates the Markdown draft
-├── core/                    # The Foundational Logic
-│   ├── llm.py               # Groq/Llama API client
-│   ├── orchestrator.py      # Manages agent hand-offs
-│   ├── repo_facts.py        # Static analysis & ground truth
-│   └── summary_compressor.py# Prepares data for synthesis
-├── tools/                   # Utility Scripts
-│   └── file_scanner.py      # Directory traversal logic
-├── demo_app/                # Your test project folder
-├── .env                     # API keys (DO NOT GIT COMMIT)
-├── .gitignore               # Ignores venv, .env, __pycache__
-├── main.py                  # Streamlit UI & Entry Point
-└── requirements.txt         # Project dependencies
-
+<img width="728" height="373" alt="image" src="https://github.com/user-attachments/assets/57ef34bd-caf5-4d1f-b43b-054df0b41a48" />
 
 ---
 
@@ -141,14 +121,7 @@ Then:
 
 ## README Planning
 
-📋 Generated Plan Example:
-├── Title — Derived from project name + purpose
-├── Overview — Concise, accurate description
-├── Features — Only features present in code
-├── Installation — Only if requirements.txt exists
-├── Usage — Based on actual entry points
-├── Project Structure — Real directory layout
-└── License — Only if license file exists
+<img width="601" height="202" alt="image" src="https://github.com/user-attachments/assets/c5392f76-6ff7-41f1-9d87-5453d7b8cf0d" />
 
 ## Visual Pipeline Example
 
