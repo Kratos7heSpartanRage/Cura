@@ -97,29 +97,25 @@ Cura/
 - Python 3.8 or higher
 - [Groq API key](https://console.groq.com/) (free tier available)
 
-### Option 1: Install from PyPI
-```bash
-pip install cura-readme-generator
-```
-### Option 2: Install from source
+### Install from source
 
-# Clone the repository
+## Clone the repository
 ```bash
-git clone https://github.com/yourusername/cura.git
+git clone https://github.com/Kratos7heSpartanRage/Cura
 cd cura
 ```
-# Create virtual environment
+## Create virtual environment
 ```bash
 python -m venv cura-env
 source cura-env/bin/activate  # On Windows: cura-env\Scripts\activate
 ```
 
-# Install dependencies
+## Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-# Set up environment variables
+## Set up environment variables
 ```bash
 echo "GROQ_API_KEY=your_key_here" > .env
 ```
@@ -144,4 +140,61 @@ Then:
 3. Watch the pipeline execute in real-time
 4. Preview, edit, and download your README
 
-## How It Works:
+## README Planning
+
+📋 Generated Plan Example:
+├── Title — Derived from project name + purpose
+├── Overview — Concise, accurate description
+├── Features — Only features present in code
+├── Installation — Only if requirements.txt exists
+├── Usage — Based on actual entry points
+├── Project Structure — Real directory layout
+└── License — Only if license file exists
+
+## Visual Pipeline Example
+
+🔍 Scanning directory...
+   ✅ Found 47 files, 12 Python modules
+
+📊 Extracting repository facts...
+   ✅ Python files: 12
+   ✅ Entry points: 2 (main.py, cli.py)
+   ✅ Has README: False
+   ✅ Has License: False
+   ✅ Has Requirements: True
+
+🧠 Analyzing source files...
+   [1/12] 🔍 Analyzing: main.py
+   [2/12] 🔍 Analyzing: cli.py
+   [3/12] 🔍 Analyzing: analyzer.py
+   [4/12] 🔍 Analyzing: config.py
+   ...
+
+📝 Formatting and compressing summaries...
+   ✅ Using 10 compressed summaries for planning
+   • main.py: Entry point that parses command line...
+   • cli.py: Handles command-line interface...
+   • analyzer.py: Core log analysis engine...
+
+🎯 Inferring project intent...
+   ✅ Intent: CLI tool for analyzing server logs and generating reports
+
+🗂 Planning README structure...
+   ✅ README plan created with 7 sections
+
+✍️  Generating README content...
+   ✅ README generated 
+
+🛠  Reviewing and refining README...
+   ✅ README refined 
+
+📊 PIPELINE COMPLETE
+
+## Acknowledgments
+
+1. Groq for providing fast, reliable LLM inference
+2. Streamlit for the beautiful UI framework
+3. All contributors who have helped shape Cura
+
+
+Created by me for the EPOCH x NASIKO Agentic AI Hackathon
