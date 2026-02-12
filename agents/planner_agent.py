@@ -27,6 +27,9 @@ class PlannerAgent:
         - Limitations
         - Future Improvements
 
+        Only include sections that can be directly supported by repository files.
+        Avoid generic boilerplate sections.
+
         Return a structured section plan.
         """
 

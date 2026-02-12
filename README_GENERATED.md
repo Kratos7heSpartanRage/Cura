@@ -1,144 +1,65 @@
 =========================
-README.md
+README
 =========================
 
-**Cura: A Simple CLI Greeting Application**
-=====================================
+# Log Analysis Application
+=========================
 
-### Overview
+## Overview
+-----------
+
+This log analysis application analyzes log files, parses log messages, and generates reports based on log levels.
+
+## Features
 ------------
 
-Cura is a simple command-line interface (CLI) application designed to provide a basic user interface and greeting functionality. The application is built using Python.
+*   Log file parsing
+*   Log level counting
+*   Report generation
 
-### Features
-------------
+## Tech Stack
+-------------
 
-* A configuration file (`config.json`) that stores application settings and preferences.
-* A main entry point (`main.py`) that initializes the system and starts the application.
-* A utility module (`utils/helpers.py`) that provides a reusable function for printing a friendly greeting to users.
+*   Python
+*   CLI
 
-### Tech Stack
+## Installation
 --------------
 
-* **Programming Language:** Python
+No external dependencies are required.
 
-### Installation
----------------
-
-No external dependencies are required to run the application.
-
-### Usage
+## Usage
 ---------
 
-To use the application, simply run the `main.py` script from the terminal or command prompt.
+To use the application, simply run the `main.py` file from the command line. The application will prompt you to select a log file to analyze.
 
-### Project Structure
+## Project Structure
 ---------------------
 
 The project structure is as follows:
 
-* `main.py`: Main entry point that initializes the system and starts the application.
-* `utils/`: Directory containing utility modules.
-	+ `helpers.py`: Utility module that provides a reusable function for printing a friendly greeting to users.
+*   `data/`: directory containing sample log files
+*   `utils/`: directory containing utility functions and classes
+*   `main.py`: entry point of the application
+*   `analyzer.py`: module responsible for analyzing log files
+*   `parser.py`: module responsible for parsing log files
+*   `helpers.py`: utility module providing a helper function
+*   `formatter.py`: utility module providing a function for formatting log report data
 
-### Contributing
+## Contributing
 --------------
 
-Contributions to the project are welcome. Please submit pull requests or report issues through the project's issue tracker.
+Contributions are welcome. Please submit pull requests or issues to the repository.
 
-===============================
-PROJECT INTENT
-===============================
-**Project Analysis**
-=====================
+## License
+---------
 
-The project appears to be a simple demo application that provides a basic user interface and greeting functionality.
+This project is not licensed under any specific license.
 
-### Target Audience
--------------------
+## Limitations
+--------------
 
-The target audience for this project is likely beginners in Python programming, as the code is concise and easy to understand.
+The application has the following limitations:
 
-### Type of Application
------------------------
-
-The application is a command-line interface (CLI) application, as it is designed to be executed from the terminal or command prompt.
-
-### Core Features
------------------
-
-The core features of the project include:
-
-* A configuration file (`config.json`) that stores application settings and preferences.
-* A main entry point (`main.py`) that initializes the system and starts the application.
-* A utility module (`utils/helpers.py`) that provides a reusable function for printing a friendly greeting to users.
-
-===============================
-FILE SUMMARIES
-===============================
-**File Analysis: config.json**
-=====================================
-
-### Role in the Project
-------------------------
-
-The `config.json` file is a configuration file for the project, storing application settings and preferences.
-
-### Main Functionality
-----------------------
-
-The main functionality of this file is to provide a centralized location for storing configuration data.
-
-### Key Components
--------------------
-
-Based on the file content, the following key components can be identified:
-
-* **version**: The current version of the application.
-* **debug**: A boolean flag indicating whether the application is in debug mode.
-* **theme**: The current theme of the application.
-
-**File Analysis: main.py**
-==========================
-
-### Role in the Project
-------------------------
-
-The `main.py` file is the main entry point of the project, responsible for initializing and starting the application.
-
-### Main Functionality
-----------------------
-
-The main functionality of this file is to:
-
-1. Import the `helpers` module from the `utils` package.
-2. Define a `start_app` function that initializes the system by printing a message and greeting the user.
-3. Check if the script is being run directly (i.e., not being imported as a module) and if so, call the `start_app` function.
-
-### Key Components (Functions/Classes)
---------------------------------------
-
-#### Functions
-
-* `start_app`: Initializes the system by printing a message and greeting the user.
-
-#### Modules
-
-* `utils.helpers`: A module containing helper functions, including `greet_user`.
-
-**File Analysis: helpers.py**
-=====================================
-
-### File Information
-
-* **File Name:** `helpers.py`
-* **File Path:** `./utils/helpers.py`
-* **Role in the Project:** Utility module containing helper functions for the demo app.
-
-### Main Functionality
-
-* The main functionality of this file is to provide a reusable function for printing a friendly greeting to users.
-
-### Key Components
-
-* **`greet_user` function:** This is the primary function in the file, responsible for printing a personalized greeting to users.
+*   It only supports log files in a specific format.
+*   It does not handle errors or exceptions.

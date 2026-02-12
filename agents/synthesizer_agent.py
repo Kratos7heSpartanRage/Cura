@@ -13,6 +13,7 @@ class SynthesizerAgent:
         summaries: list[dict[str, Any]],
         intent: str,
         repo_facts: dict[str, Any],
+        repo_stats: dict[str, Any],
     ) -> str:
 
         # Combine file summaries safely
@@ -33,7 +34,17 @@ CRITICAL RULES:
 - Base everything strictly on the provided repository facts and summaries.
 - If something does not exist, do not mention it.
 - If no requirements.txt exists: Mention that no external dependencies are required. Do NOT say installation steps are unavailable.
+- The following sections are INTERNAL CONTEXT and MUST NOT appear in the final README:
+  - README PLAN
+  - PROJECT INTENT
+  - FILE SUMMARIES
+  - REPOSITORY FACTS
+- Output ONLY the final README.md content.
 
+ABSOLUTE RULES:
+- Do NOT describe CLI flags unless explicitly present in code.
+- Do NOT describe directories unless they exist in repository facts.
+- Do NOT describe reports unless file summaries confirm report generation.
 
 Your output must be:
 - Clean Markdown
@@ -68,12 +79,22 @@ Entry points: {repo_facts.get("entry_points")}
 Python files: {repo_facts.get("python_files")}
 Directory structure: {repo_facts.get("directory_structure")}
 
+===============================
+REPOSITORY STATISTICS
+===============================
+Total Python files: {repo_stats.get("total_python_files")}
+Total directories: {repo_stats.get("total_directories")}
+Entry points: {repo_stats.get("entry_points")}
+
 Infer a strong, descriptive project title based on:
 - Project intent
 - Entry points
 - Core functionality
 
 Do not use generic titles like "Project Title".
+
+If the repository appears to be a demo, example, or test project,
+clearly state that in the Overview.
 
 IMPORTANT:
 - Only describe installation steps if requirements.txt exists.

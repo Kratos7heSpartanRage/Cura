@@ -6,6 +6,7 @@ from agents.synthesizer_agent import SynthesizerAgent
 from agents.critic_agent import CriticAgent
 
 from core.repo_facts import RepoFactsExtractor
+from agents.repo_stats_agent import RepoStatsAgent
 
 from typing import Any
 
@@ -23,18 +24,16 @@ class CuraOrchestrator:
         print("🔍 Scanning directory...")
         structure = self.directory_agent.analyze(project_path)
 
-        # ---------------------------
-        # 🧠 Extract Ground Truth Facts
-        # ---------------------------
         print("📊 Extracting repository facts...")
         facts_extractor = RepoFactsExtractor(project_path)
         repo_facts = facts_extractor.extract()
 
+        print("📈 Generating repository statistics...")
+        stats_agent = RepoStatsAgent()
+        repo_stats = stats_agent.generate_stats(repo_facts)
+
         summaries: list[dict[str, Any]] = []
 
-        # ---------------------------
-        # 📄 File Summarization
-        # ---------------------------
         for file_info in structure["files"]:
             print(f"🧠 Analyzing {file_info['file_name']}...")
             summary = self.summarizer_agent.summarize_file(file_info)
@@ -42,38 +41,24 @@ class CuraOrchestrator:
             if summary:
                 summaries.append(summary)
 
-        # ---------------------------
-        # 🎯 Intent Inference
-        # ---------------------------
         print("🔎 Inferring project intent...")
         intent = self.intent_agent.infer_intent(summaries)
 
-        # ---------------------------
-        # 🗂 README Planning
-        # ---------------------------
         print("🗂 Planning README structure...")
         plan = self.planner_agent.plan_readme(intent)
 
-        # ---------------------------
-        # ✍ README Generation (Grounded)
-        # ---------------------------
         print("✍ Generating README...")
         readme = self.synthesizer_agent.generate_readme(
             plan,
             summaries,
             intent,
-            repo_facts,   # <-- Injected grounded facts
+            repo_facts,
+            repo_stats, 
         )
 
-        # ---------------------------
-        # 🛠 Critic / Reviewer
-        # ---------------------------
         print("🛠 Reviewing README...")
-        final_readme = self.critic_agent.review_readme(readme, repo_facts)
+        final_readme = self.critic_agent.review_readme(readme, repo_facts, repo_stats,)
 
-        # ---------------------------
-        # 💾 Save Output
-        # ---------------------------
         with open("README_GENERATED.md", "w", encoding="utf-8") as f:
             f.write(final_readme or "")
 

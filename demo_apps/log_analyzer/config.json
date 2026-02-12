@@ -1,0 +1,4 @@
+{
+  "log_levels": ["INFO", "WARNING", "ERROR"],
+  "version": "1.0"
+}

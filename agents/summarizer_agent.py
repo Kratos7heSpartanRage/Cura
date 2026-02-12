@@ -27,6 +27,9 @@ class SummarizerAgent:
         - Main functionality
         - Key components (functions/classes)
         - Whether it is likely an entry point
+        - For each capability, explicitly state:
+            - Proven behavior (from code)
+            - Assumed intent (if any)
         Respond in structured markdown.
         """
 
