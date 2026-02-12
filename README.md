@@ -16,7 +16,7 @@
 
 ## 📋 Overview
 
-Cura analyzes your codebase using a sophisticated **multi-agent pipeline**, extracting ground truth directly from your repository to generate documentation that is:
+Cura analyzes your codebase using a sophisticated **multi-agent pipeline**, extracting ground truth directly from your repository to generate the README.md and additional documentation that is:
 
 - ✅ **Accurate** — Never hallucinates features, files, or dependencies
 - ✅ **Complete** — Covers installation, usage, architecture, and more  
