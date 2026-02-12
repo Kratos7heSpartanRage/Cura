@@ -67,31 +67,81 @@ Every step of the pipeline is **fully transparent**:
 
 ## 🏗 Architecture
 
-┌─────────────────────────────────────────────────────────────┐
-│ Cura Pipeline │
-├───────────────┬─────────────────────────────────────────────┤
-│ Directory │ ┌─────────┐ ┌─────────┐ ┌─────────┐ │
-│ Scan │ │ Repo │ │ Repo │ │ File │ │
-│ │ │ Facts │ │ Stats │ │Summaries│ │
-├───────────────┤ └─────────┘ └─────────┘ └─────────┘ │
-│ Analysis │ ↓ ↓ ↓ │
-│ │ ┌─────────────────────────────────┐ │
-│ Layer │ │ Intent Agent │ │
-│ │ │ (Project Purpose & Type) │ │
-│ │ └─────────────────────────────────┘ │
-├───────────────┤ ↓ │
-│ Planning │ ┌─────────────────────────────────┐ │
-│ │ │ Planner Agent │ │
-│ Layer │ │ (README Structure Design) │ │
-│ │ └─────────────────────────────────┘ │
-├───────────────┤ ↓ │
-│ Generation │ ┌─────────────────────────────────┐ │
-│ │ │ Synthesizer Agent │ │
-│ Layer │ │ (README Content Creation) │ │
-│ │ └─────────────────────────────────┘ │
-├───────────────┤ ↓ │
-│ Review │ ┌─────────────────────────────────┐ │
-│ │ │ Critic Agent │ │
-│ Layer │ │ (Validation & Refinement) │ │
-│ │ └─────────────────────────────────┘ │
-└───────────────┴─────────────────────────────────────────────┘
+Cura/
+├── agents/                  # The AI Workforce
+│   ├── critic_agent.py      # Final reviewer (quality gate)
+│   ├── directory_agent.py   # Analyzes file structure
+│   ├── intent_agent.py      # Infers project purpose
+│   ├── planner_agent.py     # Outlines README sections
+│   ├── summarizer_agent.py  # Summarizes individual files
+│   └── synthesizer_agent.py # Generates the Markdown draft
+├── core/                    # The Foundational Logic
+│   ├── llm.py               # Groq/Llama API client
+│   ├── orchestrator.py      # Manages agent hand-offs
+│   ├── repo_facts.py        # Static analysis & ground truth
+│   └── summary_compressor.py# Prepares data for synthesis
+├── tools/                   # Utility Scripts
+│   └── file_scanner.py      # Directory traversal logic
+├── demo_app/                # Your test project folder
+├── .env                     # API keys (DO NOT GIT COMMIT)
+├── .gitignore               # Ignores venv, .env, __pycache__
+├── main.py                  # Streamlit UI & Entry Point
+└── requirements.txt         # Project dependencies
+
+
+---
+
+## 💻 Installation
+
+### Prerequisites
+- Python 3.8 or higher
+- [Groq API key](https://console.groq.com/) (free tier available)
+
+### Option 1: Install from PyPI
+```bash
+pip install cura-readme-generator
+```
+### Option 2: Install from source
+
+# Clone the repository
+```bash
+git clone https://github.com/yourusername/cura.git
+cd cura
+```
+# Create virtual environment
+```bash
+python -m venv cura-env
+source cura-env/bin/activate  # On Windows: cura-env\Scripts\activate
+```
+
+# Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+# Set up environment variables
+```bash
+echo "GROQ_API_KEY=your_key_here" > .env
+```
+
+## 🚀 Usage
+Generate a README for any local project:
+
+```bash
+# Basic usage
+python main.py --path /path/to/your/project
+
+# Output is saved as README_GENERATED.md in current directory
+```
+
+## 🌐 Web Interface (Streamlit)
+```bash
+streamlit run app.py
+```
+Then:
+1. Enter a local path or GitHub URL
+2. Click "Generate README"
+3. Watch the pipeline execute in real-time
+4. Preview, edit, and download your README
+
+## How It Works:
