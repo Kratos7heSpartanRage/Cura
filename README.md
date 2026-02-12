@@ -4,7 +4,6 @@
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Groq](https://img.shields.io/badge/Groq-LLM-orange.svg)](https://groq.com)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io)
 
 **Cura (Code Curator) is an intelligent multi-agent system that automatically generates comprehensive, accurate README.md files for any software repository.**
