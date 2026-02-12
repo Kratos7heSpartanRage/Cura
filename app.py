@@ -19,6 +19,82 @@ from agents.critic_agent import CriticAgent
 from core.repo_facts import RepoFactsExtractor
 from core.summary_compressor import compress_summaries
 
+def apply_advanced_styling():
+    st.markdown("""
+        <style>
+        /* Import Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=JetBrains+Mono&display=swap');
+
+        /* 1. Animated Gradient Background */
+        .stApp {
+            background: linear-gradient(-45deg, #0f172a, #1e1b4b, #312e81, #1e1b4b);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            font-family: 'Inter', sans-serif;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 2. Glassmorphism for Containers */
+        [data-testid="stExpander"], [data-testid="stMetric"], .stTabs {
+            background: rgba(255, 255, 255, 0.03) !important;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 16px !important;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 3. Futuristic Glowing Title */
+        h1 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 800 !important;
+            background: linear-gradient(90deg, #818cf8, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 4rem !important;
+            letter-spacing: -3px !important;
+            margin-bottom: 0px !important;
+        }
+
+        /* 4. Styled Button with Neon Hover */
+        div.stButton > button:first-child {
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+            border: none;
+            color: white;
+            padding: 12px 24px;      /* Increased padding for breathing room */
+            border-radius: 50px;
+            font-size: 14px !important; /* Decreased font size */
+            font-weight: 600;           /* Semi-bold for elegance over bulk */
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            width: auto;                /* Let it be a natural size instead of full width */
+            display: block;
+            margin: 0 auto;             /* Center the button */
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.2);
+        }
+
+        div.stButton > button:hover {
+            background: #818cf8;
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.6);
+            transform: scale(1.01);
+        }
+
+        /* 5. Code Block Styling */
+        code {
+            font-family: 'JetBrains Mono', monospace !important;
+            background-color: rgba(0,0,0,0.3) !important;
+            color: #818cf8 !important;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+
+apply_advanced_styling()
+
 # ---- Page config ----
 st.set_page_config(
     page_title="Cura — README Generator",
@@ -29,8 +105,8 @@ st.title("🧠 Cura")
 st.caption("AI-powered README generation")
 
 repo_input = st.text_input(
-    "Repository (Local path or GitHub URL)",
-    placeholder="e.g. ./my_project or https://github.com/user/repo"
+    "Repository",
+    placeholder="Local path or GitHub URL"
 )
 
 def prepare_repo(repo_input: str) -> str:
@@ -70,8 +146,6 @@ if generate:
         repo_facts = facts_extractor.extract()
         st.success("Repository facts extracted")
 
-        st.expander("Repository Facts").json(repo_facts)
-
         # ---- Step 3: File Summaries (VERBOSE) ----
         st.write("🧠 Summarizing files...")
         summarizer = SummarizerAgent()
@@ -86,9 +160,6 @@ if generate:
 
         # ---- Step 4: Compress Summaries (CRITICAL) ----
         compressed_summaries = compress_summaries(raw_summaries)
-        st.success("Summaries compressed for downstream agents")
-
-        st.expander("Compressed File Roles").json(compressed_summaries)
 
         # ---- Step 5: Intent Analysis ----
         st.write("🎯 Inferring project intent...")
